@@ -9,8 +9,7 @@ An input string is valid if:
 2.Open brackets must be closed in the correct order.
  */
 fun main() {
-    //This is so easy)
-    println(isValid("(){}[]"))
+    println(isValid("{[]}()"))
 }
 
 fun isValid(string: String): Boolean {
