@@ -11,27 +11,18 @@ Do not allocate extra space for another array. You must do this by modifying the
 */
 
 fun main() {
-    val intArray = IntArray(5)
+    val intArray = IntArray(3)
     intArray[0] = 1
     intArray[1] = 1
-    intArray[2] = 1
-    intArray[3] = 1
-    intArray[4] = 5
+    intArray[2] = 2
 
     println(removeDuplicates(intArray))
 }
 
 private fun removeDuplicates(numbers: IntArray): Int {
-    var integer = 0
-    val cloneIntList = ArrayList<Int>()
+    val hashSet = HashSet<Int>()
     for (i in numbers) {
-        val intList = numbers.filter { it == i }
-        if (intList.size == 1) {
-            integer++
-        } else if (cloneIntList.none { it == i }) {
-            integer++
-        }
-        cloneIntList.add(i)
+        hashSet.add(i)
     }
-    return integer
+    return hashSet.count()
 }
