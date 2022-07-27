@@ -1,5 +1,6 @@
 package com.example.algoritms.easy
 
+//---------------------------------------------------------------------------
 fun main(){
     println(addBinary("11","1"))
 

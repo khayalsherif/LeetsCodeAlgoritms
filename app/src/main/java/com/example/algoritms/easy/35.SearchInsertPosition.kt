@@ -1,5 +1,6 @@
 package com.example.algoritms.easy
 
+//---------------------------------------------------------------------------
 fun main() {
     val intArray = IntArray(4)
     intArray[0] = -3
