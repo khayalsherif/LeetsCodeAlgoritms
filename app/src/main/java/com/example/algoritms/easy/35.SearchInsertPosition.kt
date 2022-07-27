@@ -2,33 +2,36 @@ package com.example.algoritms.easy
 
 fun main() {
     val intArray = IntArray(4)
-    intArray[0] = -1
-    intArray[1] = -3
-    intArray[2] = -5
-    intArray[3] = -6
-    println(searchInsert(intArray, -2))
+    intArray[0] = -3
+    intArray[1] = -1
+    intArray[2] = 3
+    intArray[3] = 90
+    println(
+        searchInsert(intArray, -6)
+    )
 }
 
-fun searchInsert(numbers: IntArray, target: Int): Int {
-    var integer = numbers.indexOf(target)
-    if (integer == -1) {
+fun searchInsert(nums: IntArray, target: Int): Int {
+    var integer = nums.indexOf(target)
+    if (integer == -1 && nums[0] < target && nums.last() > target) {
         var number = 0
-        for (i in numbers) {
+        for (i in nums) {
             if (i < target) {
                 number = i
             }
         }
-
-        integer = if (number < 0 ) {
-            numbers.indexOf(number) - 1
+        integer = if (number < 0 || number == 0) {
+            nums.indexOf(number) + 1
         } else {
-            numbers.indexOf(number) + 1
+            if (number < 0) {
+                nums.size - nums.indexOf(number)
+            } else {
+                nums.indexOf(number) + 1
+            }
         }
 
-        if (number == -1) {
-            integer = numbers.indexOf(number) - 1
-        }
-
+    } else {
+        integer = 0
     }
     return integer
 }

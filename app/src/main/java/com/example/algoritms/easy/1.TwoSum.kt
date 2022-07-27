@@ -1,28 +1,54 @@
 package com.example.algoritms.easy
 
-/*
+/**
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order.*/
+
 fun main() {
-    val array = arrayOf(0, 2, 2)
-    println(twoSum(array, 4))
+    val array = IntArray(3)
+    array[0] = 3
+    array[1] = 2
+    array[2] = 3
+
+    println(twoSum(array, 5).toList().toString())
 }
 
-fun twoSum(array: Array<Int>, sum: Int): IntArray {
+fun twoSum(nums: IntArray, target: Int): IntArray {
     val sumList = IntArray(2)
     var lastIndex = 0
     var nextIndex = 1
-    while (true) {
-        if (array[lastIndex] + array[nextIndex] == sum) {
-            sumList[0] = lastIndex
-            sumList[1] = nextIndex
-            break
-        } else if (nextIndex == array.size - 1) {
-            lastIndex++
-        } else {
-            nextIndex++
-        }
-    }
+    println(nums.indices)
     return sumList
 }
+
+
+fun twoSum2(nums: IntArray, target: Int): IntArray? {
+    val map: MutableMap<Int, Int> = HashMap()
+    for (i in nums.indices) {
+        val complement = target - nums[i]
+        if (map.containsKey(complement)) {
+            return intArrayOf(map[complement]!!, i)
+        }
+        map[nums[i]] = i
+    }
+    // In case there is no solution, we'll just return null
+    return null
+}
+/*
+    while (true) {
+        if (array.size - 1 != nextIndex) {
+            if (array[lastIndex] + array[nextIndex] == sum) {
+                sumList[0] = lastIndex
+                sumList[1] = nextIndex
+                break
+            } else if (nextIndex == array.size - 1) {
+                lastIndex++
+            } else {
+                nextIndex++
+            }
+        } else {
+            break
+        }
+    }
+ */
