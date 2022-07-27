@@ -1,50 +1,39 @@
 package com.example.algoritms.easy
 
-//---------------------------------------------------------------------------
-fun main() {
-    val array = IntArray(3)
-    array[0] = 3
-    array[1] = 2
-    array[2] = 3
+// VariableIndex1 increases one every one cycle, but every time increases one variableIndex2.
+// If they(variableIndex1,variableIndex2) intersects then variableIndex2 increases one
 
-    println(twoSum(array, 5).toList().toString())
+fun main() {
+    val array = IntArray(4)
+    array[0] = 2
+    array[1] = 5
+    array[2] = 5
+    array[3] = 11
+    println(twoSum(array, 10))
 }
 
 fun twoSum(nums: IntArray, target: Int): IntArray {
-    val sumList = IntArray(2)
-    var lastIndex = 0
-    var nextIndex = 1
-    println(nums.indices)
-    return sumList
-}
-
-
-fun twoSum2(nums: IntArray, target: Int): IntArray? {
-    val map: MutableMap<Int, Int> = HashMap()
-    for (i in nums.indices) {
-        val complement = target - nums[i]
-        if (map.containsKey(complement)) {
-            return intArrayOf(map[complement]!!, i)
-        }
-        map[nums[i]] = i
-    }
-    // In case there is no solution, we'll just return null
-    return null
-}
-/*
+    val array = IntArray(2)
+    var variableIndex1 = 0
+    var variableIndex2 = 1
     while (true) {
-        if (array.size - 1 != nextIndex) {
-            if (array[lastIndex] + array[nextIndex] == sum) {
-                sumList[0] = lastIndex
-                sumList[1] = nextIndex
-                break
-            } else if (nextIndex == array.size - 1) {
-                lastIndex++
-            } else {
-                nextIndex++
-            }
-        } else {
+        if (variableIndex1 == nums.size - 1 && variableIndex2 == nums.size - 1) {
             break
+        } else {
+            if (variableIndex2 != nums.size) {
+                if (nums[variableIndex1] + nums[variableIndex2] == target && variableIndex1 != variableIndex2) {
+                    array[0] = variableIndex1
+                    array[1] = variableIndex2
+                    break
+                } else {
+                    variableIndex2++
+                }
+            } else {
+                variableIndex1++
+                variableIndex2 = 0
+            }
         }
     }
- */
+    return array
+
+}
